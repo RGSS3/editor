@@ -1,1 +1,22 @@
-404
+<!doctype html>
+<html>
+  <head>
+     <title></title>
+     <script src='https://unpkg.com/requirejs/require.js'></script>
+  </head>
+  <body>
+     <script>
+       requirejs.config({
+          paths: {
+             "unpkg": "https://unpkg.com" 
+          }
+       });
+       
+       var a = window.location.pathname;
+       require(a.split(";").map(x => "unpkg/" + x), function(){
+         console.log("Load OK");
+       });
+     </script>
+  </body>
+</html>
+
