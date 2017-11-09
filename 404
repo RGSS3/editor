@@ -1,0 +1,3 @@
+<script>
+  window.location = "/editor/main.html;" + window.location.pathname.replace(/^\/editor[^;];/, "")
+</script>
