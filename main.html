@@ -12,7 +12,7 @@
           }
        });
        
-       var a = window.location.search;
+       var a = window.location.search.slice(1);
        require(a.split(";").map(x => "unpkg/" + x), function(){
          console.log("Load OK");
        });
