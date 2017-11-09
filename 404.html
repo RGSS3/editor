@@ -12,7 +12,7 @@
           }
        });
        
-       var a = window.location.pathname;
+       var a = window.location.pathname.replace(/^\/editor/, "");
        require(a.split(";").map(x => "unpkg/" + x), function(){
          console.log("Load OK");
        });
