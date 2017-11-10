@@ -28,7 +28,7 @@
      <script>
        requirejs.config({
           paths: {
-             "unpkg": "https://unpkg.com" 
+             "base": "https://unpkg.com" 
           }
        });
 
@@ -39,7 +39,7 @@
 
         function reqall(...args){
            return Promise.all(args.map(req));
-      }
+        }
 
         function linkCss(src){
           return function(f, g){
@@ -64,7 +64,7 @@
               return new Promise(linkCss(name.replace(/^&/, "https://unpkg.com/")));
             }
             case /^&/.test(name): {
-              var src = name.replace(/^&/, "unpkg/");
+              var src = name.replace(/^&/, "base/");
               return req(src);
             }
           }
