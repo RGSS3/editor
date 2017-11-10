@@ -37,7 +37,8 @@
         function resolve(name){
           switch(true){
             case /\.css$/.test(name): {
-              return new Promise(linkCss(name));
+
+              return new Promise(linkCss(name.replace(/^&/, "https://unpkg.com/")));
             }
             case /^&/.test(name): {
               var src = name.replace(/^&/, "unpkg/");
