@@ -52,6 +52,7 @@
           switch(true){
             case /^:/.test(name):{
               return new Promise((ac, re) => {
+                console.log(name.slice(1));
                 ac(eval(name.slice(1)));
               });
             }
