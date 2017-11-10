@@ -20,7 +20,7 @@
 
         function reqall(...args){
            return Promise.all(args.map(req));
-        }
+      }
 
         function linkCss(src){
           return function(f, g){
@@ -30,7 +30,7 @@
             a.type = 'text/css';
             a.onload = f;
             a.onerror = g;
-            document.head.querySelector("[data-id='import']").appendChild(a)
+            document.body.querySelector("[data-id='import']").appendChild(a)
           }
         }
 
