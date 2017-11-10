@@ -12,6 +12,9 @@
         height: 100vh;
         position: relative;
       }
+      #app .CodeMirror{
+        height: 100%;
+      }
       body, html{
         margin: 0;
         padding: 0;
@@ -54,7 +57,6 @@
           switch(true){
             case /^:/.test(name):{
               return new Promise((ac, re) => {
-                console.log(name.slice(1));
                 ac(eval(name.slice(1)));
               });
             }
