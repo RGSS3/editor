@@ -48,6 +48,11 @@
 
         function resolve(name){
           switch(true){
+            case /^:/.test(name):{
+              return new Promise((ac, re) => {
+                ac(eval(name.slice(1)));
+              });
+            }
             case /\.css$/.test(name): {
               return new Promise(linkCss(name.replace(/^&/, "https://unpkg.com/")));
             }
