@@ -3,6 +3,7 @@
   <head>
      <title></title>
      <script src='https://unpkg.com/requirejs/require.js'></script>
+     <section data-id='import'></section>
   </head>
   <body>
      <script>
@@ -11,11 +12,47 @@
              "unpkg": "https://unpkg.com" 
           }
        });
-       
+
+       var Importer = (function(){
+        function req(str){
+           return new Promise((ac, re) => require([str], ac));
+        }
+
+        function reqall(...args){
+           return Promise.all(args.map(req));
+        }
+
+        function linkCss(src){
+          return function(f, g){
+            var a = document.createElement("link");
+            a.rel = "stylesheet";
+            a.href = src;
+            a.type = 'text/css';
+            a.onload = f;
+            a.onerror = g;
+            document.head.querySelector("[data-id='import']").appendChild(a)
+          }
+        }
+
+        function resolve(name){
+          switch(true){
+            case /\.css$/.test(name): {
+              return new Promise(linkCss(name));
+            }
+            case /^&/.test(name): {
+              var src = name.replace(/^&/, "unpkg/");
+              return req(src);
+            }
+          }
+        }
+         
+        return {
+          req, reqall, linkCss, resolve
+        }
+       })();
+
        var a = window.location.search.slice(1);
-       require(a.split(";").map(x => "unpkg/" + x), function(){
-         console.log("Load OK");
-       });
+       Promise.all(a.split(";").map(Importer.resolve)).then(_ => console.log("Hello world"));
      </script>
   </body>
 </html>
