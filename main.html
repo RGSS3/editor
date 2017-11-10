@@ -6,6 +6,7 @@
      <section data-id='import'></section>
   </head>
   <body>
+    <div id='app'></div>
      <script>
        requirejs.config({
           paths: {
@@ -37,7 +38,6 @@
         function resolve(name){
           switch(true){
             case /\.css$/.test(name): {
-
               return new Promise(linkCss(name.replace(/^&/, "https://unpkg.com/")));
             }
             case /^&/.test(name): {
