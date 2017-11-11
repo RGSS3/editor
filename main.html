@@ -34,7 +34,7 @@
 
        var Importer = (function(){
         function req(str){
-           return new Promise((ac, re) => require([str], ac));
+           return new Promise((ac, re) => window.require([str], ac));
         }
 
         function reqall(...args){
