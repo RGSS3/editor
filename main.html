@@ -73,7 +73,7 @@
         function seq(str){
             return Promise.all(str.split(";").map(Importer.resolve));
         }
-         
+        
         return {
           req, reqall, linkCss, resolve, seq
         }
