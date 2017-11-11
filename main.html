@@ -69,14 +69,19 @@
             }
           }
         }
+        
+        function seq(str){
+            return Promise.all(str.split(";").map(Importer.resolve));
+        }
          
         return {
-          req, reqall, linkCss, resolve
+          req, reqall, linkCss, resolve, seq
         }
        })();
 
        var a = window.location.search.slice(1);
-       Promise.all(decodeURIComponent(a).split(";").map(Importer.resolve)).then(_ => console.log("Hello world"));
+       Importer.seq(decodeURIComponent(a)).then(console.log("Hello world"));
+       var e_exec = Importer.seq;
      </script>
   </body>
 </html>
